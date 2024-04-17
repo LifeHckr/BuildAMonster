@@ -19,7 +19,7 @@ class Monster extends Phaser.Scene {
         this.load.atlasXML("monsterParts", "spritesheet_default.png", "spritesheet_default.xml");
         
         // update instruction text
-        document.getElementById('description').innerHTML = '<h2>Monster.js<br>S - smile // F - show fangs<br>A - move left // D - move right</h2>'
+        document.getElementById('description').innerHTML = '<h2>My little PogChamp<br>S - smile // F - show fangs<br>A - move left // D - move right</h2>'
     }
 
     create() {
@@ -50,15 +50,21 @@ class Monster extends Phaser.Scene {
         my.sKey = this.input.keyboard.addKey('S');
         my.fKey = this.input.keyboard.addKey('F');
 
-        
+        this.input.keyboard.on("keydown", function (event) {
+            //console.log(event.code);
+            if (event.code === "KeyF") {
+                my.sprite.Fangs.visible = true;
+                my.sprite.Smile.visible = false;
+            }
+        });
     }
 
     update() {
         let my = this.my;    // create an alias to this.my for readability
-        if(my.fKey.isDown) {
+        /*if(my.fKey.isDown) {
             my.sprite.Fangs.visible = true;
             my.sprite.Smile.visible = false;
-        }
+        }*/
         if(my.sKey.isDown) {
             my.sprite.Fangs.visible = false;
             my.sprite.Smile.visible = true;
